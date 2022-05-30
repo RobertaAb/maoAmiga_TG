@@ -29,3 +29,22 @@ Após isso execute
 ''' npm run start '''
 
 Back End
+
+
+
+
+dados heroku bco
+Host
+ec2-54-172-175-251.compute-1.amazonaws.com
+Database
+d2n9c7orvtcjd
+User
+oyaxwgqtisnwrg
+Port
+5432
+Password
+b079660994a2e2fc3220f36af1327fabaa5fafa22b6ecd4726e006c5580abb8f
+URI
+postgres://oyaxwgqtisnwrg:b079660994a2e2fc3220f36af1327fabaa5fafa22b6ecd4726e006c5580abb8f@ec2-54-172-175-251.compute-1.amazonaws.com:5432/d2n9c7orvtcjd
+Heroku CLI
+heroku pg:psql postgresql-concentric-26084 --app maoamigaapp
