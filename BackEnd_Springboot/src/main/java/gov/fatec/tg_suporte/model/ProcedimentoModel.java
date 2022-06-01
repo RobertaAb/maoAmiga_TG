@@ -1,79 +1,40 @@
 package gov.fatec.tg_suporte.model;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "procedimento")
 public class ProcedimentoModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private UUID id;
 
-    @Column(name = "titulo", nullable = false)
-    private String titulo;
+	@Column(name = "titulo", nullable = false)
+	private String titulo;
 
-    @Column(name = "descricao", nullable = false)
-    private String descricao;
-    @Column(name = "solucao", nullable = false)
-    private String solucao;
+	@Column(name = "descricao", nullable = false)
+	private String descricao;
 
-    public String getDescricao() {
-        return descricao;
-    }
+	@Column(name = "solucao", nullable = false)
+	private String solucao;
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private UsuarioModel usuarioModel;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private UsuarioModel usuarioModel;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private TipoProblemaModel tipoProblemaModel;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private TipoProblemaModel tipoProblemaModel;
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getSolucao() {
-        return solucao;
-    }
-
-    public void setSolucao(String solucao) {
-        this.solucao = solucao;
-    }
-
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
-    }
-
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
-
-    public TipoProblemaModel getTipoProblemaModel() {
-        return tipoProblemaModel;
-    }
-
-    public void setTipoProblemaModel(TipoProblemaModel tipoProblemaModel) {
-        this.tipoProblemaModel = tipoProblemaModel;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setRegistrationDate(LocalDateTime utc) {
-    }
 }

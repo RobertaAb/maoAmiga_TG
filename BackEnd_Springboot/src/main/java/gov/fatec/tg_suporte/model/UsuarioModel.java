@@ -1,18 +1,27 @@
 package gov.fatec.tg_suporte.model;
 
-import javax.persistence.*;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "usuario")
 public class UsuarioModel {
-	@Id 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID id;
-	
+
 	@Column(name = "nome", nullable = false)
 	private String nome;
-	
+
 	@Column(name = "email", nullable = false)
 	private String email;
 
@@ -33,76 +42,5 @@ public class UsuarioModel {
 
 	@Column(name = "salvar", nullable = false)
 	private String salvar;
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getTipo_usuario() {
-		return tipo_usuario;
-	}
-
-	public void setTipo_usuario(String tipo_usuario) {
-		this.tipo_usuario = tipo_usuario;
-	}
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getDeletar() {
-		return deletar;
-	}
-
-	public void setDeletar(String deletar) {
-		this.deletar = deletar;
-	}
-
-	public String getAtualizar() {
-		return atualizar;
-	}
-
-	public void setAtualizar(String atualizar) {
-		this.atualizar = atualizar;
-	}
-
-	public String getSalvar() {
-		return salvar;
-	}
-
-	public void setSalvar(String salvar) {
-		this.salvar = salvar;
-	}
 
 }

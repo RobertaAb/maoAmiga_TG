@@ -1,56 +1,52 @@
 package gov.fatec.tg_suporte.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import javax.validation.Valid;
 
-import gov.fatec.tg_suporte.service.UsuarioService;
-import gov.fatec.tg_suporte.dto.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import gov.fatec.tg_suporte.model.UsuarioModel;
+import gov.fatec.tg_suporte.service.UsuarioService;
+
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/usuario")
 public class UsuarioController {
-    @Autowired
-    UsuarioService usuarioService;
 
-        @GetMapping("/listar")
-        public List<Usuario> ListarTodos() {
-            return usuarioService.findAll();
-        }
-        @PostMapping("/salvarusuario")
-        public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
-                return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuarioDto));
-        }
-    @DeleteMapping(path ={"/{id}"})
-    public ResponseEntity <?> delete(@PathVariable long id) {
-        return repository.findById(id)
-                .map(record -> {
-                    repository.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
-    }
+	@Autowired
+	UsuarioService usuarioService;
 
-    @PutMapping(value="/{id}")
-    public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody Usuario usuario) {
-        return repository.findById(id)
-                .map(record -> {
-                    record.setName(usuario.getName());
-                    record.setEmail(usuario.getEmail());
-                    record.setSenha(usuario.getSenha());
-                    Usuario updated = repository.save(record);
-                    return ResponseEntity.ok().body(updated);
-                }).orElse(ResponseEntity.notFound().build());
-    }
-    @GetMapping
-    public List findAll(){
-        return repository.findAll();
-    }
-    }
+	@GetMapping
+	public List<UsuarioModel> ListarTodos() {
+		return usuarioService.findAll();
+	}
+
+	@PostMapping
+	public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioModel usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
+	}
+
+	@DeleteMapping
+	public ResponseEntity<?> delete(@RequestParam UUID id) {
+		usuarioService.delete(id);
+		return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.OK);
+	}
+
+	@PutMapping
+	public ResponseEntity<?> update(@RequestBody UsuarioModel usuario) {
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
+	}
+
+}

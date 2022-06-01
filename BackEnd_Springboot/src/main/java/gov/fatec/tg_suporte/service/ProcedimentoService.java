@@ -1,30 +1,35 @@
 package gov.fatec.tg_suporte.service;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 
-import gov.fatec.tg_suporte.dto.ProcedimentoDto;
-import gov.fatec.tg_suporte.model.ProcedimentoModel;
-import gov.fatec.tg_suporte.repository.ProcedimentoRepository;
-import org.springframework.beans.BeanUtils;
+import java.util.List;
+import java.util.UUID;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import gov.fatec.tg_suporte.model.ProcedimentoModel;
+import gov.fatec.tg_suporte.repository.ProcedimentoRepository;
 
 @Service
 public class ProcedimentoService {
 
-    @Autowired
-    ProcedimentoRepository procedimentoRepository;
+	@Autowired
+	ProcedimentoRepository procedimentoRepository;
 
-    @Transactional
-    public ProcedimentoModel save(ProcedimentoDto procedimentoDto) {
-        var procedimentoModel = new ProcedimentoModel();
-        BeanUtils.copyProperties(procedimentoDto, procedimentoModel);
-        procedimentoModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
-        return procedimentoRepository.save(procedimentoModel);
+	@Transactional
+	public ProcedimentoModel save(ProcedimentoModel procedimentoDto) {
+		return procedimentoRepository.save(procedimentoDto);
 
+	}
 
-    }
+	public List<ProcedimentoModel> findAll() {
+		return procedimentoRepository.findAll();
+	}
+
+	public void delete(UUID id) {
+
+		procedimentoRepository.deleteById(id);
+
+	}
 }
