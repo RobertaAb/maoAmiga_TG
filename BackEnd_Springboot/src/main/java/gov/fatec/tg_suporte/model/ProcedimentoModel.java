@@ -15,8 +15,18 @@ public class ProcedimentoModel {
     @Column(name = "titulo", nullable = false)
     private String titulo;
 
+    @Column(name = "descricao", nullable = false)
+    private String descricao;
     @Column(name = "solucao", nullable = false)
     private String solucao;
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UsuarioModel usuarioModel;

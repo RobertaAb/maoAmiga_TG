@@ -20,9 +20,37 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-        @PostMapping
+        @GetMapping("/listar")
+        public List<Usuario> ListarTodos() {
+            return usuarioService.findAll();
+        }
+        @PostMapping("/salvarusuario")
         public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
                 return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuarioDto));
         }
+    @DeleteMapping(path ={"/{id}"})
+    public ResponseEntity <?> delete(@PathVariable long id) {
+        return repository.findById(id)
+                .map(record -> {
+                    repository.deleteById(id);
+                    return ResponseEntity.ok().build();
+                }).orElse(ResponseEntity.notFound().build());
+    }
 
+    @PutMapping(value="/{id}")
+    public ResponseEntity update(@PathVariable("id") long id,
+                                 @RequestBody Usuario usuario) {
+        return repository.findById(id)
+                .map(record -> {
+                    record.setName(usuario.getName());
+                    record.setEmail(usuario.getEmail());
+                    record.setSenha(usuario.getSenha());
+                    Usuario updated = repository.save(record);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
+    }
+    @GetMapping
+    public List findAll(){
+        return repository.findAll();
+    }
     }
