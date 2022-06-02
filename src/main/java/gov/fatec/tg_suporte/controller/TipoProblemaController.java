@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.fatec.tg_suporte.model.TipoProblemaModel;
+import gov.fatec.tg_suporte.model.TipoProblema;
 import gov.fatec.tg_suporte.service.TipoProblemaService;
 
 //@CrossOrigin(origins = "*", maxAge = 3600)
@@ -25,12 +25,12 @@ public class TipoProblemaController {
 	TipoProblemaService tipoProblemaService;
 
 	@GetMapping
-	public List<TipoProblemaModel> ListarTodos() {
+	public List<TipoProblema> ListarTodos() {
 		return tipoProblemaService.findAll();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> saveTipoProblema(@RequestBody @Valid TipoProblemaModel tipoProblemaModel) {
+	public ResponseEntity<?> saveTipoProblema(@RequestBody @Valid TipoProblema tipoProblemaModel) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(tipoProblemaService.save(tipoProblemaModel));
 	}
 }

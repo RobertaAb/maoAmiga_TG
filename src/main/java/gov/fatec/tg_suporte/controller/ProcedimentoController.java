@@ -1,7 +1,6 @@
 package gov.fatec.tg_suporte.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.fatec.tg_suporte.model.ProcedimentoModel;
+import gov.fatec.tg_suporte.model.Procedimento;
 import gov.fatec.tg_suporte.service.ProcedimentoService;
 
 //@CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,24 +28,24 @@ public class ProcedimentoController {
 	ProcedimentoService procedimentoService;
 
 	@GetMapping
-	public List<ProcedimentoModel> ListarTodos() {
+	public List<Procedimento> ListarTodos() {
 		return procedimentoService.findAll();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> saveProcedimento(@RequestBody @Valid ProcedimentoModel procedimento) {
+	public ResponseEntity<?> saveProcedimento(@RequestBody @Valid Procedimento procedimento) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(procedimentoService.save(procedimento));
 	}
 
 	@DeleteMapping
-	public ResponseEntity<?> delete(@RequestParam UUID id) {
+	public ResponseEntity<?> delete(@RequestParam Integer id) {
 		procedimentoService.delete(id);
 		return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.OK);
 
 	}
 
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody ProcedimentoModel procedimento) {
+	public ResponseEntity<?> update(@RequestBody Procedimento procedimento) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(procedimentoService.save(procedimento));
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gov.fatec.tg_suporte.model.TipoProblemaModel;
+import gov.fatec.tg_suporte.model.TipoProblema;
 import gov.fatec.tg_suporte.repository.TipoProblemaRepository;
 
 @Service
@@ -18,11 +18,11 @@ public class TipoProblemaService {
 		this.tipoProblemaRepository = tipoProblemaRepository;
 	}
 
-	public List<TipoProblemaModel> findAll() {
+	public List<TipoProblema> findAll() {
 		return tipoProblemaRepository.findAll();
 	}
 
-	public TipoProblemaModel save(TipoProblemaModel tipoProblemaModel) {
+	public TipoProblema save(TipoProblema tipoProblemaModel) {
 		return tipoProblemaRepository.save(tipoProblemaModel);
 	}
 

@@ -1,7 +1,6 @@
 package gov.fatec.tg_suporte.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import gov.fatec.tg_suporte.model.UsuarioModel;
+import gov.fatec.tg_suporte.model.Usuario;
 import gov.fatec.tg_suporte.service.UsuarioService;
 
 //@CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,23 +28,23 @@ public class UsuarioController {
 	UsuarioService usuarioService;
 
 	@GetMapping
-	public List<UsuarioModel> ListarTodos() {
+	public List<Usuario> ListarTodos() {
 		return usuarioService.findAll();
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioModel usuario) {
+	public ResponseEntity<Object> saveUsuario(@RequestBody @Valid Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
 	}
 
 	@DeleteMapping
-	public ResponseEntity<?> delete(@RequestParam UUID id) {
+	public ResponseEntity<?> delete(@RequestParam Integer id) {
 		usuarioService.delete(id);
 		return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.OK);
 	}
 
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody UsuarioModel usuario) {
+	public ResponseEntity<?> update(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
 	}
 

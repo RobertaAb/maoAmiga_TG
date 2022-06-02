@@ -1,0 +1,13 @@
+gov\fatec\tg_suporte\controller\TipoProblemaController.class
+gov\fatec\tg_suporte\repository\UsuarioRepository.class
+gov\fatec\tg_suporte\repository\ProcedimentoRepository.class
+gov\fatec\tg_suporte\service\TipoProblemaService.class
+gov\fatec\tg_suporte\service\ProcedimentoService.class
+gov\fatec\tg_suporte\controller\ProcedimentoController.class
+gov\fatec\tg_suporte\model\Procedimento.class
+gov\fatec\tg_suporte\model\Usuario.class
+gov\fatec\tg_suporte\controller\UsuarioController.class
+gov\fatec\tg_suporte\TgSuporteApplication.class
+gov\fatec\tg_suporte\service\UsuarioService.class
+gov\fatec\tg_suporte\repository\TipoProblemaRepository.class
+gov\fatec\tg_suporte\model\TipoProblema.class

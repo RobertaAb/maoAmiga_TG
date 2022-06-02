@@ -1,14 +1,13 @@
 package gov.fatec.tg_suporte.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gov.fatec.tg_suporte.model.ProcedimentoModel;
+import gov.fatec.tg_suporte.model.Procedimento;
 import gov.fatec.tg_suporte.repository.ProcedimentoRepository;
 
 @Service
@@ -18,16 +17,16 @@ public class ProcedimentoService {
 	ProcedimentoRepository procedimentoRepository;
 
 	@Transactional
-	public ProcedimentoModel save(ProcedimentoModel procedimentoDto) {
-		return procedimentoRepository.save(procedimentoDto);
+	public Procedimento save(Procedimento procedimento) {
+		return procedimentoRepository.save(procedimento);
 
 	}
 
-	public List<ProcedimentoModel> findAll() {
+	public List<Procedimento> findAll() {
 		return procedimentoRepository.findAll();
 	}
 
-	public void delete(UUID id) {
+	public void delete(Integer id) {
 
 		procedimentoRepository.deleteById(id);
 
