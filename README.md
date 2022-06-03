@@ -48,3 +48,11 @@ URI
 postgres://oyaxwgqtisnwrg:b079660994a2e2fc3220f36af1327fabaa5fafa22b6ecd4726e006c5580abb8f@ec2-54-172-175-251.compute-1.amazonaws.com:5432/d2n9c7orvtcjd
 Heroku CLI
 heroku pg:psql postgresql-concentric-26084 --app maoamigaapp
+
+
+tipoproblemarepository
+@Query("SELECT p FROM Procedimento p WHERE p.titulo = ?1")
+    ProcedimentoModel findProcedimentoById(String titulo);
+
+    @Query("SELECT t FROM TipoProblema t WHERE t.tipo_problema = ?1")
+    TipoProblemaModel findTipoProblemaById(String tipo_problema);

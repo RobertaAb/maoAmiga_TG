@@ -1,9 +1,10 @@
 package gov.fatec.tg_suporte.repository;
 
-import gov.fatec.tg_suporte.model.ProcedimentoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import gov.fatec.tg_suporte.model.Procedimento;
 
-public interface ProcedimentoRepository extends JpaRepository<ProcedimentoModel, UUID> {
+@Repository
+public interface ProcedimentoRepository extends JpaRepository<ProcedimentoRepository, Integer> {
 }
